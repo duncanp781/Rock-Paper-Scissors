@@ -17,6 +17,7 @@ function game(){
         Score:  ${playerScore} : ${computerScore}`);
     }
     for(let i = 0; i < 5; i++){
+        round++;
         let player = prompt(`Round ${round}: Rock, Paper, or Scissors?`);
         let computer = computerPlay();
         let result = rpsRound(player,computer);
