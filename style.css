@@ -1,0 +1,29 @@
+html{
+  height: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-style: solid;
+  border-color: black;
+  gap: 24px;
+}
+
+div{
+  text-align: center;
+  font-size: 28px;
+  border-style: solid;
+  border-color: black;
+  flex: 0;
+}
+
+button{
+  font-size: 18px;
+  background-color: cyan;
+  border-style: none;
+  padding: 8px;
+  border-radius: 8px;
+}

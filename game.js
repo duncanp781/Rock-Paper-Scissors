@@ -8,7 +8,7 @@ let round = 0;
 const buttons = document.querySelectorAll("button");
 
 const results = document.querySelector("#results");
-results.textContent = `Rock, Paper, or Scissors?`
+results.innerHTML = `Rock, Paper, or Scissors?`
 buttons.forEach(btn => {
     btn.addEventListener('click', runButton);
 });
@@ -20,18 +20,18 @@ function updateRound(resultFormatted){
             btn.removeEventListener('click', runButton);
         });
         if(playerScore > computerScore){
-            results.textContent = `Round 5/5: You Win!
+            results.innerHTML = `Round 5/5: You Win! <br>
             Score:  ${playerScore} : ${computerScore}`;
         }else if (computerScore > playerScore){
-            results.textContent = `Round 5/5: You Lose!
+            results.innerHTML = `Round 5/5: You Lose! <br>
             Score:  ${playerScore} : ${computerScore}`
         }else{
-            results.textContent = `Round 5/5:Draw!
+            results.innerHTML = `Round 5/5:Draw! <br>
             Score:  ${playerScore} : ${computerScore}`
         }
     }  else{ 
         let roundText = `Round ${round}/5: Rock, Paper, or Scissors?`;
-        results.textContent =  `${roundText} \n ${resultFormatted}`;
+        results.innerHTML =  `${roundText} <br> ${resultFormatted}`;
     }
 }
 
