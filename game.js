@@ -1,46 +1,78 @@
-function game(){
-    let round = 0;
-    let playerScore = 0;
-    let computerScore = 0;
+// const rock = document.querySelector("#rock");
+// const paper = document.querySelector("#paper");
+// const scissors = document.querySelector("#scissors");
+
+let playerScore = 0;
+let computerScore = 0;
+let round = 0;
+const buttons = document.querySelectorAll("button");
+
+const results = document.querySelector("#results");
+results.textContent = `Rock, Paper, or Scissors?`
+buttons.forEach(btn => {
+    btn.addEventListener('click', runButton);
+});
+
+function updateRound(resultFormatted){
+    round++;
+    if(round >= 5){
+        buttons.forEach(btn => {
+            btn.removeEventListener('click', runButton);
+        });
+        if(playerScore > computerScore){
+            results.textContent = `Round 5/5: You Win!
+            Score:  ${playerScore} : ${computerScore}`;
+        }else if (computerScore > playerScore){
+            results.textContent = `Round 5/5: You Lose!
+            Score:  ${playerScore} : ${computerScore}`
+        }else{
+            results.textContent = `Round 5/5:Draw!
+            Score:  ${playerScore} : ${computerScore}`
+        }
+    }  else{ 
+        let roundText = `Round ${round}/5: Rock, Paper, or Scissors?`;
+        results.textContent =  `${roundText} \n ${resultFormatted}`;
+    }
+}
+
+
+function runButton(e){
+    let btn = e.target;
+    let playerChoice = btn.getAttribute('id');
+    let computerChoice = computerPlay()
+    let result = rpsRound(playerChoice, computerChoice);
+    let resultFormatted = resultString(result, playerChoice, computerChoice);
+    updateRound(resultFormatted);
+}
+function resultString(roundResult, player, computer){
     let win = function(player, computer){
         playerScore++;
-        console.log(`You Win! ${capitalize(player)} beats ${capitalize(computer)}
-        Score:  ${playerScore} : ${computerScore}`); 
+        return `You Win! ${capitalize(player)} beats ${capitalize(computer)}
+        Score:  ${playerScore} : ${computerScore}`; 
     }
     let lose = function(player, computer){
         computerScore++;
-        console.log(`You Lose! ${capitalize(computer)} beats ${capitalize(player)}
-        Score:  ${playerScore} : ${computerScore}`);
+        return  `You Lose! ${capitalize(computer)} beats ${capitalize(player)}
+        Score:  ${playerScore} : ${computerScore}`;
     }
     let draw = function(player, computer){
-        console.log(`Draw! 
-        Score:  ${playerScore} : ${computerScore}`);
+        return `Draw! 
+        Score:  ${playerScore} : ${computerScore}`;
     }
-    for(let i = 0; i < 5; i++){
-        round++;
-        let player = prompt(`Round ${round}: Rock, Paper, or Scissors?`);
-        let computer = computerPlay();
-        let result = rpsRound(player,computer);
-        switch (result){
-            case 'win':
-                win(player,computer);
-            break;
-            case 'lose':
-                lose(player,computer);
-            break;
-            case 'draw':
-                draw(player,computer);
-            break;
-        }
-    }
-    if(playerScore > computerScore){
-        console.log("You win!");
-    }else if (computerScore > playerScore){
-        console.log("You lose!");
-    }else{
-        console.log("Draw!");
+    switch (roundResult){
+        case 'win':
+            return win(player,computer);
+        break;    
+        case 'lose':
+            return lose(player,computer);
+        break;
+        case 'draw':
+            return draw(player,computer);
+        break;
     }
 }
+
+
 
 
 
