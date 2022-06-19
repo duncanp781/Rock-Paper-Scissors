@@ -1,12 +1,8 @@
-// const rock = document.querySelector("#rock");
-// const paper = document.querySelector("#paper");
-// const scissors = document.querySelector("#scissors");
 
 let playerScore = 0;
 let computerScore = 0;
 let round = 0;
 const buttons = document.querySelectorAll("button");
-
 const results = document.querySelector("#results");
 results.innerHTML = `Rock, Paper, or Scissors?`
 buttons.forEach(btn => {
@@ -72,10 +68,6 @@ function resultString(roundResult, player, computer){
     }
 }
 
-
-
-
-
 function computerPlay(){
     let rand = Math.floor(Math.random()*3);
     let out;
@@ -92,7 +84,6 @@ function computerPlay(){
     }
     return out;
 }
-
 
 function rpsRound(playerSelection, computerSelection){
     let player = playerSelection.toLowerCase();
